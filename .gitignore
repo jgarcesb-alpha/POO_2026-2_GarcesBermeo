@@ -1,0 +1,16 @@
+# NetBeans
+/nbproject/private/
+/build/
+/dist/
+/nbbuild/
+/.nb-gradle/
+
+# Compilados de Java
+*.class
+*.jar
+*.war
+*.ear
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
