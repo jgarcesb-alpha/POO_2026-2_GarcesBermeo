@@ -9,3 +9,5 @@ Asignatura: Programación Orientada a Objetos
 Curso: 2026-2s
 
 Universidad Nacional de Colombia
+
+Repositorio dedicado a las entregas del estudiante durante el periodo académico 2026-2s.
