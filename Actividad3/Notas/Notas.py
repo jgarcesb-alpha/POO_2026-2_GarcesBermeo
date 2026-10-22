@@ -62,6 +62,8 @@ class Ventana:
                 except ValueError:
                     raise ValueError("Valor(es) no numérico(s), revise por favor")
 
+                valores.append(valor)
+
             if any(nota>5.0 or nota<0.0 for nota in valores):
                 raise ValueError("Nota(s) fuera de rango, revise por favor")
             

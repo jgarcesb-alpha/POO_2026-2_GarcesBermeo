@@ -63,6 +63,23 @@ class Cilindro(Solido):
         
         ax.plot_surface(X,Y,Z, color="gold", alpha=0.8, edgecolor="gray")
         
+        r = np.linspace(0, self.radio, 30)
+        R_mesh, Theta_mesh = np.meshgrid(r, theta)
+        X_base = R_mesh * np.cos(Theta_mesh)
+        Y_base = R_mesh * np.sin(Theta_mesh)
+    
+        # Tapa inferior (z = 0)
+        Z_inf = np.zeros_like(R_mesh)
+        ax.plot_surface(
+            X_base, Y_base, Z_inf, color="gold", alpha=0.7, edgecolor="none"
+        )
+    
+        # Tapa superior (z = self.altura)
+        Z_sup = np.full_like(R_mesh, self.altura)
+        ax.plot_surface(
+            X_base, Y_base, Z_sup, color="gold", alpha=0.7, edgecolor="none"
+        )
+        
         ax.set_xlabel("Eje X (cm)")
         ax.set_ylabel("Eje Y (cm)")
         ax.set_zlabel("Altura Z (cm)")
