@@ -145,13 +145,13 @@ class Cubo(Solido):
         
 class Piramide(Solido):
     
-    def __init__(self, lados, longitudLados, altura):
+    def __init__(self, lados, apotema, altura):
         super().__init__()
-        self.longLados = longitudLados
         self.nLados = int(lados)
-        self.perimetro = self.nLados*self.longLados
-        self.apotema = self.longLados/(2*np.tan(np.pi/self.nLados))
+        self.apotema = apotema
         self.altura = altura
+        self.longLados = 2*apotema*np.tan(np.pi/self.nLados)
+        self.perimetro = self.nLados*self.longLados
         
     def calcular(self):
         areaBase = self.perimetro*self.apotema*(1/2)
@@ -219,13 +219,13 @@ class Prisma(Solido):
     
     #Se calcula para un prisma regular
     
-    def __init__(self, lados, longitudLados, altura):
+    def __init__(self, lados, apotema, altura):
         super().__init__()
-        self.longLados = longitudLados
         self.nLados = int(lados)
-        self.perimetro = self.nLados*self.longLados
-        self.apotema = self.longLados/(2*np.tan(np.pi/self.nLados))
+        self.apotema = apotema
         self.altura = altura
+        self.longLados = 2*apotema*np.tan(np.pi/self.nLados)
+        self.perimetro = self.nLados*self.longLados
         
     def calcular(self):
         perimetro = self.nLados*self.longLados
@@ -400,9 +400,9 @@ class Aplicacion:
         ventanaPiramide=tk.Toplevel(self.root)
         tk.Label(ventanaPiramide, text="Piramide").pack(anchor="w")
         
-        tk.Label(ventanaPiramide, text="Longitud de lado:").pack(anchor="w")
-        self.longLados=tk.Entry(ventanaPiramide)
-        self.longLados.pack(pady=15)
+        tk.Label(ventanaPiramide, text="Apotema:").pack(anchor="w")
+        self.apotema=tk.Entry(ventanaPiramide)
+        self.apotema.pack(pady=15)
         
         tk.Label(ventanaPiramide, text="N° de Lados:").pack(anchor="w")
         self.nLados = tk.Entry(ventanaPiramide)
@@ -420,14 +420,14 @@ class Aplicacion:
         
     def calcularPiramide(self):
         try:
-            longLados = float(self.longLados.get())
+            apotema = float(self.apotema.get())
             nLados = int(self.nLados.get())
             altura = float(self.altura.get())
             
             if nLados < 3:
                 raise ValueError()
             
-            miObjeto = Piramide(nLados, longLados, altura)
+            miObjeto = Piramide(nLados, apotema, altura)
             miObjeto.calcular()
             
             resultadoTexto = (f"Volumen: {miObjeto.volumenEncerrado:.2f} cm3\n"
@@ -442,9 +442,9 @@ class Aplicacion:
         ventanaPrisma=tk.Toplevel(self.root)
         tk.Label(ventanaPrisma, text="Prisma").pack(anchor="w")
         
-        tk.Label(ventanaPrisma, text="Longitud de lado:").pack(anchor="w")
-        self.longLados=tk.Entry(ventanaPrisma)
-        self.longLados.pack(pady=15)
+        tk.Label(ventanaPrisma, text="Apotema:").pack(anchor="w")
+        self.apotema=tk.Entry(ventanaPrisma)
+        self.apotema.pack(pady=15)
         
         tk.Label(ventanaPrisma, text="N° de Lados:").pack(anchor="w")
         self.nLados = tk.Entry(ventanaPrisma)
@@ -462,14 +462,14 @@ class Aplicacion:
     
     def calcularPrisma(self):
         try:
-            longLados = float(self.longLados.get())
+            apotema = float(self.apotema.get())
             nLados = int(self.nLados.get())
             altura = float(self.altura.get())
             
             if nLados < 3:
                 raise ValueError()
             
-            miObjeto = Prisma(nLados, longLados, altura)
+            miObjeto = Prisma(nLados, apotema, altura)
             miObjeto.calcular()
             
             resultadoTexto = (f"Volumen: {miObjeto.volumenEncerrado:.2f} cm3\n"
